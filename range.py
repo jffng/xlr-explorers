@@ -4,9 +4,15 @@ import json
 import time
 import datetime
 
-st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-
 port = sys.argv[1]
+loc = sys.argv[2]
+radio = sys.argv[3]
+
+{
+	"radio1": 'ATDL409756B8\r',
+	"radio2": 'ATDL409756BD\r',
+	"radio3": 'ATDL40975703\r'
+}
 
 ser = serial.Serial(port, 9600, timeout=2)
 ser.flush()
@@ -15,15 +21,16 @@ s = ser.read(3)
 # print s
 
 ser.flush()
-ser.write("ATBR\r")
+ser.write('ATBR\r')
 br = ser.read(3)
+# print br
 
 ser.flush()
 ser.write('ATDH13A200\r')
 s = ser.read(3) 
 # print s
 ser.flush()
-ser.write('ATDL40975703\r')
+ser.write('ATDL409756B8\r')
 s = ser.read(3) 
 # print s
 ser.flush()
@@ -54,7 +61,7 @@ ser.flush()
 ser.write("ATDB\r")
 rangeLevel = ser.read(3) 
 rangeLevel = int(rangeLevel[0], 16)
-rangeLevel = str(rangeLevel)
+rangeLevel = str(rangeLevel)s
 # print "range: " , rangeLevel
 
 ser.flush()
@@ -63,4 +70,10 @@ s = ser.read(3)
 # print s
 ser.close()
 
-print st + ',' + rangeLevel + ',' + br[0]
+
+st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+
+try:
+	print st + ',' + loc + ',' + rangeLevel + ',' + br[0]
+except IndexError:
+	print st + ',' + loc +',-,' + br[0]
