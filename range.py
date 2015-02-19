@@ -16,7 +16,7 @@ s = ser.read(3)
 
 ser.flush()
 ser.write("ATBR\r")
-br = ser.read(2)
+br = ser.read(3)
 
 ser.flush()
 ser.write('ATDH13A200\r')
@@ -39,7 +39,7 @@ ser.write('ATCN\r')
 s = ser.read(3) 
 # print s
 
-myString = "This is a range test" 
+myString = "This is a range test"
 
 ser.flush()
 ser.write(myString)
@@ -52,7 +52,9 @@ s = ser.read(3)
 
 ser.flush()
 ser.write("ATDB\r")
-rangeLevel = ser.read(2) 
+rangeLevel = ser.read(3) 
+rangeLevel = int(rangeLevel[0], 16)
+rangeLevel = str(rangeLevel)
 # print "range: " , rangeLevel
 
 ser.flush()
@@ -61,4 +63,4 @@ s = ser.read(3)
 # print s
 ser.close()
 
-print st + ',' + rangeLevel + ',' + br
+print st + ',' + rangeLevel + ',' + br[0]
