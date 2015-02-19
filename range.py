@@ -61,7 +61,7 @@ ser.flush()
 ser.write("ATDB\r")
 rangeLevel = ser.read(3) 
 rangeLevel = int(rangeLevel[0], 16)
-rangeLevel = str(rangeLevel)s
+rangeLevel = str(rangeLevel)
 # print "range: " , rangeLevel
 
 ser.flush()
