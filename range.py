@@ -9,7 +9,7 @@ import sys
 import json
 import time
 import datetime
-
+import csv
 
 # take in the arguments from the command line
 port = sys.argv[1]
@@ -43,9 +43,16 @@ def rangeCall():
 	s = ser.read(3) 
 	st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 	try:
-		print st + ',' + loc + ',' + rangeLevel + ',' + br[0]
+		with open('test.csv', 'a') as fp:
+			a = csv.writer(fp, delimiter=',')
+			data = [st, loc, rangeLevel, br[0]]
+			a.writerow(data)
+		print st + ' , ' + loc + ' , ' + rangeLevel + ' , ' + br[0]
 	except IndexError:
-		print st + ',' + loc +',-,' + br[0]
+		with open('test.csv', 'a') as fp:
+			a = csv.writer(fp, delimiter=',')
+			data = [st, loc, ' - ', br[0]]
+		print st + ' , ' + loc +' , - , ' + br[0]
 
 # open serial connection
 ser = serial.Serial(port, 9600, timeout=2)
