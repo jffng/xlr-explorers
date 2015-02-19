@@ -64,7 +64,7 @@ s = ser.read(3)
 # set cluster id to 11
 ser.write('ATCI11\r')
 s = ser.read(3) 
-# apply charge
+# apply command
 ser.write('ATAC\r')
 s = ser.read(3) 
 ser.write('ATCN\r')
