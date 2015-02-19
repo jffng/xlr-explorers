@@ -1,3 +1,9 @@
+###############################################
+## Dan Melancon, Jeff Ong, and Kat Sullivan
+## XLR Explorers
+## Feb 19 2015
+###############################################
+
 import serial
 import sys
 import json
