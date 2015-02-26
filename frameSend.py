@@ -38,8 +38,9 @@ def syntax_thing(str):
 	new_str = ""
 	for idx,char in enumerate(str):
 		if idx%2==1:
-			new_str += ("\\x" + str[idx-1] + str[idx])
+			new_str += (chr(0x5c) + 'x' + str[idx-1].upper() + str[idx].upper())
 	return new_str
+
 
 
 transmitRequest = '1001' + radioDict[radio] + 'FFFE' + '0000' + messageToHex(message)
@@ -51,5 +52,6 @@ transmitRequest = syntax_thing(transmitRequest);
 ser = serial.Serial(port, 9600, timeout=2)
 ser.write(transmitRequest)
 s = ser.read(50)
+print type(transmitRequest)
 print transmitRequest
 print binascii.hexlify(s) 
