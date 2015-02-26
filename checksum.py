@@ -10,5 +10,6 @@ def checksum(st):
 	checksum = hex(int('0xff', 16) - int(lowest_eight_bits, 16))
 	print checksum
 
-st = "7E 00 0A 01 01 50 01 00 48 65 6C 6C 6F B8"
+st = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
+whatWeWant = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01 B9"
 checksum(st)
