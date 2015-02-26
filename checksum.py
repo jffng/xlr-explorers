@@ -12,6 +12,8 @@ def checksum(st):
 def length(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
 	print hex(len(bytes))
+	print "{0:#0{1}x}".format(len(bytes),6)
+
 
 st = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
 whatWeWant = "7E001017010013A200409756B8FFFE02425201"
