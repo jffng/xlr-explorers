@@ -14,7 +14,7 @@ from xbee import XBee
 import time
 import serial
 
-PORT = '/dev/ttyUSB0'
+PORT = '/dev/tty.usbserial'
 BAUD_RATE = 9600
 
 # Open serial port
