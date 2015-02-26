@@ -1,7 +1,7 @@
 def checksum(st):
 	checksum = 0
 	bytes = st.split()
-	checksum = sum([(int(x, 16)) for x in bytes[3:len(bytes)-1]])
+	checksum = sum([(int(x, 16)) for x in bytes[3:]])
 	checksum = hex(checksum)
 	# Keep only the lowest eight bits
 	lowest_eight_bits = [i for i in str(checksum[-2:])]
@@ -11,5 +11,5 @@ def checksum(st):
 	print checksum
 
 st = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
-whatWeWant = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01 B9"
-checksum(st)
+whatWeWant = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
+checksum(whatWeWant)
