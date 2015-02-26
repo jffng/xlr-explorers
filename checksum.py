@@ -1,11 +1,7 @@
 def checksum(st):
 	checksum = 0
 	bytes = st.split()
-	# add all thr bytes of the packet excluding the frame delimiter 7E and the length
-	# (the 2nd and 3rd bytes)
-	for idx, byte in enumerate(bytes):
-		if idx > 2 and idx != len(bytes)-1:
-			checksum += int(bytes[idx], 16)
+	checksum = sum([(int(x, 16)) for x in bytes[3:len(bytes)-1]])
 	checksum = hex(checksum)
 	# Keep only the lowest eight bits
 	lowest_eight_bits = [i for i in str(checksum[-2:])]
