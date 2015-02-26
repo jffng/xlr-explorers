@@ -31,27 +31,33 @@ def checksum(st):
 
 def length(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
-	length_hex = "{0:#0{1}x}".format(len(bytes),6)
+	length_hex = '{0:#0{1}x}'.format(len(bytes),6)
 	return length_hex[2:]
 
 def syntax_thing(str):
-	new_str = ""
+	new_str = ''
 	for idx,char in enumerate(str):
 		if idx%2==1:
 			new_str += (chr(0x5c) + 'x' + str[idx-1].upper() + str[idx].upper())
 	return new_str
 
-
-
 transmitRequest = '1001' + radioDict[radio] + 'FFFE' + '0000' + messageToHex(message)
 transmitRequest = '7E' + length(transmitRequest) + transmitRequest
 transmitRequest = transmitRequest + checksum(transmitRequest)
-print transmitRequest
-transmitRequest = syntax_thing(transmitRequest);
+# print transmitRequest
+# print transmitRequest.decode('hex')
+# print binascii.unhexlify(transmitRequest)
+# binHEx = bin(int(transmitRequest,16))[2:]
+# print hex(int(binHEx,2))
+# transmitRequest = syntax_thing(transmitRequest);
 
+tx = transmitRequest
 ser = serial.Serial(port, 9600, timeout=2)
-ser.write(transmitRequest)
+ser.write(transmitRequest.decode("hex"))
+#ser.write("b"+tx)
+print transmitRequest.decode("hex")
 s = ser.read(50)
+print binascii.hexlify(s) 
 print type(transmitRequest)
 print transmitRequest
 print binascii.hexlify(s) 
