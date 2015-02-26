@@ -7,7 +7,7 @@ def checksum(st):
 	lowest_eight_bits = ''.join(lowest_eight_bits)
 	# Subtract this from 0xff
 	checksum = hex(int('0xff', 16) - int(lowest_eight_bits, 16))
-	print checksum
+	print str(checksum)[2:]
 
 def length(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
@@ -18,5 +18,5 @@ def length(st):
 st = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
 whatWeWant = "7E001017010013A200409756B8FFFE02425201"
 withoutLength = "17010013A200409756B8FFFE02425201"
-#checksum(whatWeWant)
-length(withoutLength)
+checksum(whatWeWant)
+#length(withoutLength)
