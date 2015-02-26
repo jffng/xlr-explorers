@@ -15,8 +15,7 @@ def length(st):
 	print length_hex[2:]
 
 
-st = "7E 00 10 17 01 00 13 A2 00 40 97 56 B8 FF FE 02 42 52 01"
 whatWeWant = "7E001017010013A200409756B8FFFE02425201"
-withoutLength = "17010013A200409756B8FFFE02425201"
-checksum(whatWeWant)
-#length(withoutLength)
+withoutLength = "10010013A20040975703FFFE000068656c6c6f"
+#checksum(whatWeWant)
+length(withoutLength)
