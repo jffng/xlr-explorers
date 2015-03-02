@@ -39,13 +39,16 @@ transmitRequest = '1001' + radioDict[radio] + 'FFFE' + '0000' + messageToHex(mes
 transmitRequest = '7E' + length(transmitRequest) + transmitRequest
 transmitRequest = transmitRequest + checksum(transmitRequest)
 
+ser = serial.Serial(port, 9600, timeout=2)
+ser.write(transmitRequest.decode("hex"))
+
+# print transmitRequest.decode("hex")
+
 tx = transmitRequest
 ser = serial.Serial(port, 9600, timeout=2)
 ser.write(transmitRequest.decode("hex"))
 
 print transmitRequest.decode("hex")
 s = ser.read(50)
-print binascii.hexlify(s) 
-print type(transmitRequest)
-print transmitRequest
+
 print binascii.hexlify(s) 
