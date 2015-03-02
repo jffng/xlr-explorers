@@ -10,16 +10,14 @@ port = sys.argv[1]
 message = sys.argv[2]
 
 def atCommandToMessage(message):
-	new_str = ""
 	# convert AT command written in ASCII to Hex
-	new_str += message[0].encode("hex") + message[1].encode("hex")
+	new_str = message[0].encode("hex") + message[1].encode("hex")
 	new_str += message[2:4]
 	return new_str
 
 def checksum(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
-	checksum = sum([(int(x, 16)) for x in bytes[3:]])
-	checksum = hex(checksum)
+	checksum = hex(sum([(int(x, 16)) for x in bytes[3:]]))
 	# Keep only the lowest eight bits
 	lowest_eight_bits = [i for i in str(checksum[-2:])]
 	lowest_eight_bits = ''.join(lowest_eight_bits)
@@ -42,7 +40,5 @@ ser.write(transmitRequest.decode("hex"))
 
 print transmitRequest.decode("hex")
 s = ser.read(50)
-print binascii.hexlify(s) 
-print type(transmitRequest)
 print transmitRequest
 print binascii.hexlify(s) 
