@@ -1,5 +1,6 @@
-#this function decodes AT Command Response
-def decodeAtCommandResponse(response):
+
+#this function decodes both Transmit Request and Remote AT Command Responses
+def decodeResponse(response):
 	responseType = {
 		'00' : 'OK',
 		'01' : 'ERROR',
@@ -9,8 +10,8 @@ def decodeAtCommandResponse(response):
 	response = response[-6:-4]
 	return responseType[response]
 
-#this function decodes both Transmit Request and Remote AT Command Responses
-def decodeResponse(response):
+#this function decodes AT Command Response
+def decodeAtCommandResponse(response):
 	responseType = {
 		'00' : 'OK',
 		'01' : 'ERROR',
