@@ -1,5 +1,5 @@
 ##################################################
-## Transmit Request: hello world to radio 1
+## Send AT Commands to your radio
 ## By: Dan Melancon, Jeff Ong, and Kat Sullivan
 ##################################################
 import serial
@@ -7,17 +7,14 @@ import sys
 import binascii
 
 port = sys.argv[1]
-radio = sys.argv[2]
-message = sys.argv[3]
+message = sys.argv[2]
 
-radioDict = {
-	"radio1": '0013A200409756B8',
-	"radio2": '0013A200409756BD',
-	"radio3": '0013A20040975703'
-}
-
-def messageToHex(message):
-	return binascii.hexlify(message)
+def atCommandToMessage(message):
+	new_str = ""
+	# convert AT command written in ASCII to Hex
+	new_str += message[0].encode("hex") + message[1].encode("hex")
+	new_str += message[2:4]
+	return new_str
 
 def checksum(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
@@ -35,14 +32,9 @@ def length(st):
 	length_hex = '{0:#0{1}x}'.format(len(bytes),6)
 	return length_hex[2:]
 
-transmitRequest = '1001' + radioDict[radio] + 'FFFE' + '0000' + messageToHex(message)
+transmitRequest = '0801' + atCommandToMessage(message)
 transmitRequest = '7E' + length(transmitRequest) + transmitRequest
 transmitRequest = transmitRequest + checksum(transmitRequest)
-
-ser = serial.Serial(port, 9600, timeout=2)
-ser.write(transmitRequest.decode("hex"))
-
-# print transmitRequest.decode("hex")
 
 tx = transmitRequest
 ser = serial.Serial(port, 9600, timeout=2)
@@ -50,5 +42,7 @@ ser.write(transmitRequest.decode("hex"))
 
 print transmitRequest.decode("hex")
 s = ser.read(50)
-
+print binascii.hexlify(s) 
+print type(transmitRequest)
+print transmitRequest
 print binascii.hexlify(s) 
