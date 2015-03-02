@@ -12,7 +12,10 @@ message = sys.argv[2]
 def atCommandToMessage(message):
 	# convert AT command written in ASCII to Hex
 	new_str = message[0].encode("hex") + message[1].encode("hex")
-	new_str += message[2:4]
+	if len(message) == 3:
+		new_str += '0' + message[2]
+	else:
+		new_str += message[2:4]
 	return new_str
 
 def checksum(st):
