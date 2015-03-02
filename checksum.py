@@ -15,7 +15,9 @@ def length(st):
 	print length_hex[2:]
 
 
+# want B9
 whatWeWant = "7E001017010013A200409756B8FFFE02425201"
+# want 13
 withoutLength = "10010013A20040975703FFFE000068656c6c6f"
-#checksum(whatWeWant)
+checksum(whatWeWant)
 length(withoutLength)
