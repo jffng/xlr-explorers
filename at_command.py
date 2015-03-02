@@ -11,6 +11,7 @@ message = sys.argv[2]
 
 def atCommandToMessage(message):
 	# convert AT command written in ASCII to Hex
+	message = message.upper()
 	new_str = message[0].encode("hex") + message[1].encode("hex")
 	if len(message) == 3:
 		new_str += '0' + message[2]
