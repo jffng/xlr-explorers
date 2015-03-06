@@ -6,6 +6,13 @@ addresses={
 	'radio3': '0013A20040975703'
 }
 
+responseType = {
+	'00' : "OK",
+	'01' : "ERROR",
+	'02' : "INVALID COMMAND",
+	'03' : "INVALID PARAMETER"
+}
+
 def checksum(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
 	checksum = sum([(int(x, 16)) for x in bytes[3:]])
@@ -29,33 +36,69 @@ class RemoteAT():
 	command_type = '1701'
 
 	def __init__(self, message, radio):
-		self.message = message[0].encode("hex") + message[1].encode("hex")
-		if len(self.message) == 3:
-			self.message += '0' + self.message[2]
+		message = message.upper()
+		new_str = message[0].encode("hex") + message[1].encode("hex")
+		if len(message) == 3:
+			new_str += '0' + message[2]
 		else:
-			self.message += self.message[2:4]
+			new_str += message[2:4]
+		self.message = new_str
 		self.address = addresses[radio]
 
 	def update(self):
-		request = self.command_type + 'FFFE' + self.message
-		print request
+		request = self.command_type + self.address + 'FFFE' + '01' + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
+		print request
 		self.frame = request.decode("hex")
 
-class LocalAT():
-	command_type = '0801'
-
-	def __init__(self, name):
-		self.name = name
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		response = serial.read(response_length)
+		response = response[-6:-4]
+		return responseType[response]
 
 class Transmit():
 	command_type = '1001'
 
-	def __init__(self, name):
-		self.name = name
+	def __init__(self, message, radio):
+		self.message = messageToHex(message)
+		self.address = addresses[radio]
 
+	def update(self):
+		request = self.command_type + self.address + 'FFFE' + '0000' + self.message
+		request = '7E' + length(request) + request	
+		request = request + checksum(request)
+		print request
+		self.frame = request.decode("hex")
 
-# transmitRequest = '1001' + radioDict[radio] + 'FFFE' + '0000' + messageToHex(message)
-# transmitRequest = '7E' + length(transmitRequest) + transmitRequest
-# transmitRequest = transmitRequest + checksum(transmitRequest)
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		response = serial.read(response_length)
+		response = response[-6:-4]
+		return responseType[response]
+
+class ATCommand():
+	command_type = '0801'
+
+	def __init__(self, message):
+		message = message.upper()
+		new_str = message[0].encode("hex") + message[1].encode("hex")
+		if len(message) == 3:
+			new_str += '0' + message[2]
+		else:
+			new_str += message[2:4]
+		self.message = new_str
+
+	def update(self):
+		request = self.command_type + self.message
+		request = '7E' + length(request) + request	
+		request = request + checksum(request)
+		print request
+		self.frame = request.decode("hex")
+
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		response = serial.read(response_length)		
+		response = response[-4:-2]
+		return responseType[response]
