@@ -88,15 +88,20 @@ class Transmit():
 
 class ATCommand():
 	command_type = '0801'
+	parameter = True
 
 	def __init__(self, message):
 		message = message.upper()
 		new_str = message[0].encode("hex") + message[1].encode("hex")
 		if len(message) == 3:
 			new_str += '0' + message[2]
+			self.message = new_str
+		elif len(message) == 2:
+			self.parameter = False
+			self.message = new_str
 		else:
 			new_str += message[2:4]
-		self.message = new_str
+			self.message = new_str
 
 	def update(self):
 		request = self.command_type + self.message
@@ -108,9 +113,17 @@ class ATCommand():
 	def send(self, serial, response_length):
 		serial.write(self.frame)
 		try:
-			response = serial.read(response_length)
-			response = binascii.hexlify(response)
-			response = response[-4:-2]
-			return responseType[response]
+			if self.parameter:
+				response = serial.read(response_length)
+				response = binascii.hexlify(response)
+				response = response[-4:-2]
+				return responseType[response]
+			else:
+				response = serial.read(response_length)
+				response = binascii.hexlify(response)
+				status = response[-6:-4]
+				data = response[-4:-2]
+				data = int(data,16)
+				return [ responseType[status], data ]
 		except KeyError:
 			return 'Invalid response from remote radio'

@@ -19,7 +19,6 @@ def atCommandToMessage(message):
 		return new_str
 	else:
 		new_str += message[2:4]
-	return new_str
 
 def checksum(st):
 	bytes = [st[i:i+2] for i in range(0,len(st),2)]
