@@ -49,14 +49,18 @@ class RemoteAT():
 		request = self.command_type + self.address + 'FFFE' + '01' + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
-		print request
+		# print request
 		self.frame = request.decode("hex")
 
 	def send(self, serial, response_length):
 		serial.write(self.frame)
-		response = serial.read(response_length)
-		response = response[-6:-4]
-		return responseType[response]
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			response = response[-4:-2]
+			return responseType[response]
+		except KeyError:
+			return 'Invalid response from remote radio'
 
 class Transmit():
 	command_type = '1001'
@@ -69,14 +73,18 @@ class Transmit():
 		request = self.command_type + self.address + 'FFFE' + '0000' + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
-		print request
+		# print request
 		self.frame = request.decode("hex")
 
 	def send(self, serial, response_length):
 		serial.write(self.frame)
-		response = serial.read(response_length)
-		response = response[-6:-4]
-		return responseType[response]
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			response = response[-6:-4]
+			return responseType[response]
+		except KeyError:
+			return 'Invalid response from remote radio'
 
 class ATCommand():
 	command_type = '0801'
@@ -94,11 +102,15 @@ class ATCommand():
 		request = self.command_type + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
-		print request
+		# print request
 		self.frame = request.decode("hex")
 
 	def send(self, serial, response_length):
 		serial.write(self.frame)
-		response = serial.read(response_length)		
-		response = response[-4:-2]
-		return responseType[response]
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			response = response[-4:-2]
+			return responseType[response]
+		except KeyError:
+			return 'Invalid response from remote radio'
