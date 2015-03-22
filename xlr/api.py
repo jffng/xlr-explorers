@@ -43,7 +43,11 @@ class RemoteAT():
 		else:
 			new_str += message[2:4]
 		self.message = new_str
-		self.address = addresses[radio]
+
+		try:
+			self.address = addresses[radio]
+		except KeyError:
+			self.address = radio
 
 	def update(self):
 		request = self.command_type + self.address + 'FFFE' + '01' + self.message
@@ -67,13 +71,15 @@ class Transmit():
 
 	def __init__(self, message, radio):
 		self.message = messageToHex(message)
-		self.address = addresses[radio]
-
+		try:
+			self.address = addresses[radio]
+		except KeyError:
+			self.address = radio
+	
 	def update(self):
 		request = self.command_type + self.address + 'FFFE' + '0000' + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
-		# print request
 		self.frame = request.decode("hex")
 
 	def send(self, serial, response_length):
