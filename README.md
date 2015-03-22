@@ -24,9 +24,11 @@ send function takes the serial port and the amount of expected return bytes  and
 ######Transmit Request Example
    
 Transmit message
+
     message = 'hello world!'  
     
 radio address as string
+
     target = '0013A200409xxxxx' 
     transmit = xlr.Transmit(message, target)
     transmit.update()
@@ -38,8 +40,8 @@ send function takes the serial port and the amount of expected return bytes  and
 ######AT Command Example 
 
 AT command, commands are not case-sensitive
+
     command = 'my1001'
-    
     AT_Command = xlr.ATCommand(command)
     AT_Command.update()
     
