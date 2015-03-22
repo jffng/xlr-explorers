@@ -52,9 +52,12 @@ send function takes the serial port and the amount of expected return bytes  and
     AT_Command.send(ser, 50)
    
 ### Range_Test.py Example
-This script takes three required command line arguments: 1. location 2. target radio address 3. antenna type.
+This script takes three required command line arguments: 
+1. location 
+2. target radio address
+3. antenna type.
 
-The script executes a set of 5 range tests while cycling through each radio's data rate every five tests.
+It executes a series of five range tests for each of the eight data rates the radios communications can be adjusted to.
  
 ######To Run Range_Test.py 
     python Range_Test.py [location] [targetRadio] [antennaType]
