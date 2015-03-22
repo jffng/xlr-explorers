@@ -57,4 +57,4 @@ This script takes three required command line arguments: 1. location 2. target r
 The script executes a set of 5 range tests while cycling through each radio's data rate every five tests.
  
 ######To Run Range_Test.py 
-    python Range_Test.py [location][targetRadio][antennaType]
+    python Range_Test.py [location] [targetRadio] [antennaType]
