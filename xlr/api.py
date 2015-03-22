@@ -1,3 +1,7 @@
+###################################################
+## By Dan Melacon, Jeff Ong, and Kat Sullivan
+###################################################
+
 import serial, sys, binascii
 
 addresses={
