@@ -35,7 +35,7 @@ Import the library and define the serial port.
     
     transmit.send(ser, 50) 
    
- ######AT Command Example 
+######AT Command Example 
 
     # AT command, commands are not case-sensitive
     command = 'my1001'
