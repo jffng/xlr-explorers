@@ -1,13 +1,13 @@
 #XLR Python API
 API allows for writing structured data frames over serial usb to the XLR radio. 
 Currently, there are 3 frame types supported: Remote AT, Trasmit Request and AT Command. 
-######Setup
+####Setup
 Import the library and define the serial port.
 
       import xlr,serial
       ser = serial.Serial('/dev/cu.usbserial',9600,timeout=.5)
 
-######Remote AT Example
+####Remote AT Example
   
 AT command, commands are not case-sensitive and parameters do not require a leading 0
 
@@ -23,7 +23,7 @@ send function takes the serial port and the amount of expected return bytes  and
     
     remote_AT.send(ser, 50)  
 
-######Transmit Request Example
+####Transmit Request Example
    
 Transmit message
 
@@ -39,7 +39,7 @@ send function takes the serial port and the amount of expected return bytes  and
     
     transmit.send(ser, 50) 
    
-######AT Command Example 
+####AT Command Example 
 
 AT command, commands are not case-sensitive
 
@@ -51,7 +51,7 @@ send function takes the serial port and the amount of expected return bytes  and
     
     AT_Command.send(ser, 50)
    
-##### Range_Test.py Example
+### Range_Test.py Example
 This example takes in a location, a target radio and an antenna type and runs through a series of range tests while setting the remote and local radio's data rate every five tests. 
 ######To Run Range_Test.py 
     python Range_Test.py [location][targetRadio][antennaType]
