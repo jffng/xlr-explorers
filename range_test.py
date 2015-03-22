@@ -1,11 +1,4 @@
-# Lobby > 2, 4, 6, 8, 10
-
-# leslie e-lab
-
-# park perimeter 
-
-# inside park
-
+#!usr/bin/python
 import xlr, serial, sys, datetime, time, csv
 
 loc = sys.argv[1]

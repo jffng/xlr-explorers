@@ -1,7 +1,8 @@
-import xlr, serial, sys, datetime, time
+import xlr, serial, sys, datetime, time, csv
 
 loc = sys.argv[1]
 target = sys.argv[2]
+antenna = sys.argv[3]
 
 ser = serial.Serial('/dev/cu.usbserial', 9600, timeout=.5)
 
@@ -39,12 +40,12 @@ for i in range(9):
 
 		st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
-		# with open('test.csv', 'a') as fp:
-		# 	a = csv.writer(fp, delimiter=',')
-		# 	row = [st, loc, i, rangeLevel, br[0]]
-		# 	a.writerow(row)
+		with open('test.csv', 'a') as fp:
+			a = csv.writer(fp, delimiter=',')
+			row = [st, loc, i, antenna , response[1]]
+			a.writerow(row)
 
-		print st + ' , ' + loc + ' , ' + data_rates[str(i)] + ' , ' + str(response[1])
+		print st + ' , ' + loc + ' , ' + data_rates[str(i)] + ' , ' + antenna + ' , ' +  str(response[1])
 
 # init a new remote AT command to change the target radio's data rate to the 2nd setting.
 # call update() to generate its data frame.
@@ -67,8 +68,8 @@ for i in range(9):
 # init a new AT command to change the radio's data rate to the 1st setting.
 # call update() to generate its data frame.
 # pass it the serial object and number of bytes to expect from the response.
-at_command = xlr.ATCommand('db')
-at_command.update()
-res = at_command.send(ser, 50)
+# at_command = xlr.ATCommand('db')
+# at_command.update()
+# res = at_command.send(ser, 50)
 
-print res
+# print res
