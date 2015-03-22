@@ -54,4 +54,4 @@ send function takes the serial port and the amount of expected return bytes  and
 ### Range_Test.py Example
 This example takes in a location, a target radio and an antenna type and runs through a series of range tests while setting the remote and local radio's data rate every five tests. 
 ######To Run Range_Test.py 
-    python Range_Test.py [location][targetRadio][antennaType]
+    python Range_Test.py [location] [targetRadio] [antennaType]
