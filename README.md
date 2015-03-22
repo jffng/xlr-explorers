@@ -10,9 +10,11 @@ Import the library and define the serial port.
 ######Remote AT Example
   
 AT command, commands are not case-sensitive and parameters do not require a leading 0
+
       command = 'br4'  
     
 radio address as string
+
     target = '0013A200409xxxxx' 
     remote_AT = xlr.RemoteAT(command, target)
     remote_AT.update()
