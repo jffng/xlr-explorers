@@ -113,6 +113,7 @@ class ATCommand():
 			new_str += message[2:4]
 			self.message = new_str
 
+
 	def update(self):
 		request = self.command_type + self.message
 		request = '7E' + length(request) + request	
@@ -135,5 +136,34 @@ class ATCommand():
 				data = response[-4:-2]
 				data = int(data,16)
 				return [ responseType[status], data ]
+		except KeyError:
+			return 'Invalid response from remote radio'
+
+class Distance():
+	command_type = '08015247'
+
+	def __init__(self, radio):
+		try:
+			self.address = addresses[radio]
+		except KeyError:
+			self.address = radio
+
+	def update(self):
+		request = self.command_type + self.address
+		request = '7E' + length(request) + request	
+		request = request + checksum(request)
+		# print request
+		self.frame = request.decode("hex")
+
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			return response
+			# status = response[-6:-4]
+			# data = response[-8:-6]
+			# # print data # = int(data,16)
+			# return [ responseType[status], data ]
 		except KeyError:
 			return 'Invalid response from remote radio'
