@@ -7,7 +7,8 @@ import serial, sys, binascii
 addresses={
 	'radio1': '0013A200409756B8',
 	'radio2': '0013A200409756BD',
-	'radio3': '0013A20040975703'
+	'radio3': '0013A20040975703',
+	'radio4': '0013A200409756E2'
 }
 
 responseType = {
@@ -160,10 +161,8 @@ class Distance():
 		try:
 			response = serial.read(response_length)
 			response = binascii.hexlify(response)
-			return response
-			# status = response[-6:-4]
-			# data = response[-8:-6]
-			# # print data # = int(data,16)
-			# return [ responseType[status], data ]
+			status = response[-10:-8]
+			data = response[-8:-2]
+			return [ responseType[status], int(data,16) ]
 		except KeyError:
 			return 'Invalid response from remote radio'
