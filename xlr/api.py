@@ -166,3 +166,32 @@ class Distance():
 			return [ responseType[status], int(data,16) ]
 		except KeyError:
 			return 'Invalid response from remote radio'
+
+class RemoteDistance():
+	command_type = '1701'
+	def __init__(self, radio, recRadio):
+		message = '5247'+addresses[recRadio]
+		self.message = message
+		try:
+			self.address = addresses[radio]
+		except KeyError:
+			self.address = radio
+
+	def update(self):
+		request = self.command_type + self.address + 'FFFE' + '01' + self.message
+		request = '7E' + length(request) + request	
+		request = request + checksum(request)
+		# return request
+		self.frame = request.decode("hex")
+
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			# return response
+			status = response[-10:-8]
+			data = response[-8:-2]
+			return [ responseType[status], int(data,16) ]
+		except KeyError:
+			return 'Invalid response from remote radio'
