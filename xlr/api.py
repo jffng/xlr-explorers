@@ -169,8 +169,9 @@ class Distance():
 
 class RemoteDistance():
 	command_type = '1701'
-	def __init__(self, radio, recRadio):
-		message = '5247'+addresses[recRadio]
+
+	def __init__(self, radio, target):
+		message = '5247'+addresses[target]
 		self.message = message
 		try:
 			self.address = addresses[radio]
