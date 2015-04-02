@@ -12,16 +12,17 @@ def convert_points(lat,lon):
 
 	return (x,y)
 
-lat1 = float(sys.argv[1])
-lon1 = float(sys.argv[2])
-lat2 = float(sys.argv[3])
-lon2 = float(sys.argv[4])
+def get_distance(p1,p2):
+	# lat1 = float(sys.argv[1])
+	# lon1 = float(sys.argv[2])
+	# lat2 = float(sys.argv[3])
+	# lon2 = float(sys.argv[4])
 
-a = ar(convert_points(lat1,lon1))
-b = ar(convert_points(lat2,lon2))
+	a = ar(convert_points(p1[0],p1[1]))
+	b = ar(convert_points(p2[0],p2[1]))
 
-print a-b
+	# print a-b
 
-dist = LA.norm(a-b)
+	dist = LA.norm(a-b)
 
-print dist
+	return dist
