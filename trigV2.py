@@ -1,8 +1,9 @@
 import xlr, serial
 import math
 import operator
-import sys
+import argparse
 
+# TO DO - should work for 2D and 3D vectors
 def cross(a, b):
     c = [a[1]*b[2] - a[2]*b[1],
          a[2]*b[0] - a[0]*b[2],
@@ -17,15 +18,15 @@ ser = serial.Serial('/dev/cu.usbserial', timeout=.5)
 reset = 're'
 remote_at = xlr.RemoteAT(reset, "radio2")
 remote_at.update()
-print remote_at.send(ser,50)
+#print remote_at.send(ser,50)
 
 remote_at = xlr.RemoteAT(reset, "radio3")
 remote_at.update()
-print remote_at.send(ser,50)
+#print remote_at.send(ser,50)
 
 remote_at = xlr.RemoteAT(reset, "radio4")
 remote_at.update()
-print remote_at.send(ser,50)
+#print remote_at.send(ser,50)
 
 version = 'vb'
 remote_at = xlr.RemoteAT2(version, "radio2")
@@ -44,12 +45,21 @@ at_command = xlr.ATCommand(version)
 at_command.update()
 at_command.send(ser,50)
 
+# switch from sys arguments to argument parser
+# command line input ex: python trigV2.py -radio1 1 2 3 -radio2 4 5 6 -radio3 6 7 8
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-radio1", nargs='+',type=int)
+parser.add_argument("-radio2", nargs='+',type=int)
+parser.add_argument("-radio3", nargs='+',type=int)
+
+args = parser.parse_args()
+
 #abs coordinates
-p1 = 0.0,0.0
-# p2 = sys.argv[3],sys.argv[4]
-# p3 = sys.argv[5],sys.argv[6]
-p2 = 0.0,732.0
-p3 = 716.0,0.0
+p1 = tuple(args.radio1)
+p2 = tuple(args.radio2)
+p3 = tuple(args.radio3)
 
 # set data rates
 
