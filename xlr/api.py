@@ -58,7 +58,6 @@ class RemoteAT():
 		request = self.command_type + self.address + 'FFFE' + '01' + self.message
 		request = '7E' + length(request) + request	
 		request = request + checksum(request)
-		# print request
 		self.frame = request.decode("hex")
 
 	def send(self, serial, response_length):
@@ -68,6 +67,41 @@ class RemoteAT():
 			response = binascii.hexlify(response)
 			response = response[-4:-2]
 			return responseType[response]
+		except KeyError:
+			return 'Invalid response from remote radio'
+
+#for version commands only
+class RemoteAT2():
+	command_type = '1701'
+
+	def __init__(self, message, radio):
+		message = message.upper()
+		new_str = message[0].encode("hex") + message[1].encode("hex")
+		# if len(message) == 3:
+		# 	new_str += '0' + message[2]
+		# else:
+		# 	new_str += message[2:4]
+		self.message = new_str
+
+		try:
+			self.address = addresses[radio]
+		except KeyError:
+			self.address = radio
+
+	def update(self):
+		request = self.command_type + self.address + 'FFFE' + '01' + self.message
+		request = '7E' + length(request) + request	
+		request = request + checksum(request)
+		self.frame = request.decode("hex")
+
+	def send(self, serial, response_length):
+		serial.write(self.frame)
+		try:
+			response = serial.read(response_length)
+			response = binascii.hexlify(response)
+			status = response[-8:-6]
+			data = response[-6:-2]
+			return [ responseType[status], data ]
 		except KeyError:
 			return 'Invalid response from remote radio'
 
