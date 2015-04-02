@@ -124,7 +124,7 @@ print range23
 # TODO: needs to handle 2D vectors and 3D vectors
 def distance(p0, p1):
     #return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2 + (p0[2] - p1[2])**2)
-    return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2))
+    return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
 #distances to target
 for i in range(20):
