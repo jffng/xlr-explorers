@@ -20,7 +20,6 @@ def get_distance(p1,p2):
 
 	a = ar(convert_points(float(p1[0]),float(p1[1])))
 	b = ar(convert_points(float(p2[0]),float(p2[1])))
-
 	# print a-b
 
 	dist = LA.norm(a-b)

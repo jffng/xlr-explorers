@@ -53,8 +53,8 @@ var radio3 = {
 
 app.post('/radio1/data', function(req, res){
 	var data = req.body;
-	console.log("radio1: " );
-	console.log(data);
+	// console.log("radio1: " );
+	// console.log(data);
 	radio1.lat = data.lat;
 	radio1.lon = data.long;
 	res.end();
@@ -62,8 +62,8 @@ app.post('/radio1/data', function(req, res){
 
 app.post('/radio2/data', function(req, res){
 	var data = req.body;
-	console.log("radio2: " );
-	console.log(data);
+	// console.log("radio2: " );
+	// console.log(data);
 	radio2.lat = data.lat;
 	radio2.lon = data.long;
 	res.end();
@@ -71,8 +71,8 @@ app.post('/radio2/data', function(req, res){
 
 app.post('/radio3/data', function(req, res){
 	var data = req.body;
-	console.log("radio3: " );
-	console.log(data);
+	// console.log("radio3: " );
+	// console.log(data);
 	radio3.lat = data.lat;
 	radio3.lon = data.long;
 	res.end();
@@ -84,8 +84,8 @@ app.post('/radio3/data', function(req, res){
 function get_distance(lat1, lon1, lat2, lon2, lat3, lon3){
 
 	var arguments = "-radio1 "+ lat1.toString() + ' ' + lon1.toString() + ' ' + "-radio2 " + lat2.toString() + ' ' + lon2.toString()+ ' ' + "-radio3 "  + lat3.toString() + ' ' + lon3.toString();;
-	console.log(arguments);
-	exec('python ../trigV2.py ' + arguments,
+	// console.log(arguments);
+	exec('python ../trigV2.py ' + arguments + " >> text.txt",
 		function (error, stdout, stderr) {
 			console.log('stdout: ' + stdout);
 			console.log('stderr: ' + stderr);
