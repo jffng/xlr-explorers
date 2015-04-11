@@ -1,104 +1,101 @@
-import xlr, serial
+import xlr#, serial
 import math
 import operator
 import argparse
 import LatLonConversion
 import numpy
+from pyproj import Proj, transform
 
-# TO DO - should work for 2D and 3D vectors
-def cross(a, b):
-    # c = [a[1]*b[2] - a[2]*b[1],
-    #      a[2]*b[0] - a[0]*b[2],
-    #      a[0]*b[1] - a[1]*b[0]]
-
-    # return c
-    c = [a[1]*b[2] - a[2]*b[1],
-         a[2]*b[0] - a[0]*b[2],
-         a[0]*b[1] - a[1]*b[0]]
-
-    return c
-
-# we are radio1, we are trying to trianglualte location of radio4
-
-ser = serial.Serial('/dev/cu.usbserial', timeout=.5)
-
-reset = 're'
-remote_at = xlr.RemoteAT(reset, "radio2")
-remote_at.update()
-#print remote_at.send(ser,50)
-
-remote_at = xlr.RemoteAT(reset, "radio3")
-remote_at.update()
-#print remote_at.send(ser,50)
-
-remote_at = xlr.RemoteAT(reset, "radio4")
-remote_at.update()
-#print remote_at.send(ser,50)
-
-# version = 'vb'
-# remote_at = xlr.RemoteAT2(version, "radio2")
-# remote_at.update()
-# remote_at.send(ser,50)
-
-# remote_at = xlr.RemoteAT2(version, "radio3")
-# remote_at.update()
-# remote_at.send(ser,50)
-
-# remote_at = xlr.RemoteAT2(version, "radio4")
-# remote_at.update()
-# remote_at.send(ser,50)
-
-# at_command = xlr.ATCommand(version)
-# at_command.update()
-# at_command.send(ser,50)
+three_d = False
 
 # switch from sys arguments to argument parser
-# command line input ex: python trigV2.py -radio1 1 2 3 -radio2 4 5 6 -radio3 6 7 8
+# command line input ex: python trigV2.py -radio1 1 2 3 -radio2 4 5 6 -radio3 6 7 8 --three_d
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-radio1", nargs='+')
 parser.add_argument("-radio2", nargs='+')
 parser.add_argument("-radio3", nargs='+')
+# to set as 2D, trig2V.py --two_d
+# to set as 3D, trig2V.py --three_d
+# you can also not specify 3D or 2D, and it will default to 2D
+parser.add_argument("--two_d", dest = 'three_d', action = 'store_false')
+parser.add_argument("--three_d", dest = 'three_d', action = 'store_true')
+parser.set_defaults(three_d=False)
 
 args = parser.parse_args()
+three_d = args.three_d
 
-#abs coordinates
+print three_d
+
+
+# returns the cross product of two vectors in 2D or 3D
+def cross(a, b, three_d):
+    if three_d:
+        c = [a[1]*b[2] - a[2]*b[1],
+             a[2]*b[0] - a[0]*b[2],
+             a[0]*b[1] - a[1]*b[0]]
+
+        return c
+    else:
+        c = a[0]*b[1] - a[1]*b[0]
+        return c
+    
+
+# we are radio1, we are trying to trianglualte location of radio4
+
+# ser = serial.Serial('/dev/cu.usbserial', timeout=.5)
+
+# reset = 're'
+# remote_at = xlr.RemoteAT(reset, "radio2")
+# remote_at.update()
+# #print remote_at.send(ser,50)
+
+# remote_at = xlr.RemoteAT(reset, "radio3")
+# remote_at.update()
+# #print remote_at.send(ser,50)
+
+# remote_at = xlr.RemoteAT(reset, "radio4")
+# remote_at.update()
+#print remote_at.send(ser,50)
+
+# abs coordinates for radio1, radio2, and radio3
 p1 = tuple(args.radio1)
-# print 'p1'
+print 'p1'
 # print type(p1)
-# print p1
+print p1
 p2 = tuple(args.radio2)
-# print 'p2'
-# print p2
+print 'p2'
+print p2
 p3 = tuple(args.radio3)
-# print 'p3'
-# print p3
+print 'p3'
+print p3
 
-# set data rates
+# set data rates to 4
 
-data_rate = 'br4'
-remote_at = xlr.RemoteAT(data_rate, "radio2")
-remote_at.update()
-remote_at.send(ser,50)
+# data_rate = 'br4'
+# remote_at = xlr.RemoteAT(data_rate, "radio2")
+# remote_at.update()
+# remote_at.send(ser,50)
 
-remote_at = xlr.RemoteAT(data_rate, "radio3")
-remote_at.update()
-remote_at.send(ser,50)
+# remote_at = xlr.RemoteAT(data_rate, "radio3")
+# remote_at.update()
+# remote_at.send(ser,50)
 
-remote_at = xlr.RemoteAT(data_rate, "radio4")
-remote_at.update()
-remote_at.send(ser,50)
+# remote_at = xlr.RemoteAT(data_rate, "radio4")
+# remote_at.update()
+# remote_at.send(ser,50)
 
-at_command = xlr.ATCommand(data_rate)
-at_command.update()
-at_command.send(ser,50)
+# at_command = xlr.ATCommand(data_rate)
+# at_command.update()
+# at_command.send(ser,50)
 
 # distance betwen 1 + 2
 # rg = xlr.Distance("radio2")
 # rg.update()
 # range12 = float(rg.send(ser, 50)[1])
 # print "range12", range12
+
 range12 = LatLonConversion.get_distance(p1,p2)
 print 'range12'
 print range12
@@ -121,6 +118,13 @@ print range13
 range23 = LatLonConversion.get_distance(p2,p3)
 print 'range23'
 print range23
+
+# pyproj module
+# p1_2 = Proj(init='epsg:4326')
+# p2_2 = Proj(init='epsg:3857')
+# x1, y1 = p1_2(-73.998612, 40.732539)
+# x2, y2 = transform(p1_2,p2_2,x1,y1)
+
 
 # TODO: needs to handle 2D vectors and 3D vectors
 def distance(p0, p1):
@@ -216,6 +220,8 @@ p4 = tuple(map(operator.add,m,p1))
 # p4_2 = tuple(map(operator.add,n2,p1)) 
 print "P4: ", p4 
 # print p4_2
+
+print LatLonConversion.pyproj_convert_lat_lon(p4)
 
 
 
