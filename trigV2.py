@@ -26,8 +26,6 @@ parser.set_defaults(three_d=False)
 args = parser.parse_args()
 three_d = args.three_d
 
-print three_d
-
 
 # returns the cross product of two vectors in 2D or 3D
 def cross(a, b, three_d):
@@ -44,113 +42,84 @@ def cross(a, b, three_d):
 
 # we are radio1, we are trying to trianglualte location of radio4
 
-# ser = serial.Serial('/dev/cu.usbserial', timeout=.5)
+ser = serial.Serial('/dev/cu.usbserial', timeout=.5)
 
-# reset = 're'
-# remote_at = xlr.RemoteAT(reset, "radio2")
-# remote_at.update()
-# #print remote_at.send(ser,50)
-
-# remote_at = xlr.RemoteAT(reset, "radio3")
-# remote_at.update()
-# #print remote_at.send(ser,50)
-
-# remote_at = xlr.RemoteAT(reset, "radio4")
-# remote_at.update()
+# reset radio2, radio3, and radio4 to ensure all arguments are what we are expecting
+reset = 're'
+remote_at = xlr.RemoteAT(reset, "radio2")
+remote_at.update()
 #print remote_at.send(ser,50)
+
+remote_at = xlr.RemoteAT(reset, "radio3")
+remote_at.update()
+#print remote_at.send(ser,50)
+
+remote_at = xlr.RemoteAT(reset, "radio4")
+remote_at.update()
+print remote_at.send(ser,50)
 
 # abs coordinates for radio1, radio2, and radio3
 p1 = tuple(args.radio1)
-print 'p1'
-# print type(p1)
-print p1
 p2 = tuple(args.radio2)
-print 'p2'
-print p2
 p3 = tuple(args.radio3)
-print 'p3'
-print p3
 
 # set data rates to 4
 
-# data_rate = 'br4'
-# remote_at = xlr.RemoteAT(data_rate, "radio2")
-# remote_at.update()
-# remote_at.send(ser,50)
+data_rate = 'br4'
+remote_at = xlr.RemoteAT(data_rate, "radio2")
+remote_at.update()
+remote_at.send(ser,50)
 
-# remote_at = xlr.RemoteAT(data_rate, "radio3")
-# remote_at.update()
-# remote_at.send(ser,50)
+remote_at = xlr.RemoteAT(data_rate, "radio3")
+remote_at.update()
+remote_at.send(ser,50)
 
-# remote_at = xlr.RemoteAT(data_rate, "radio4")
-# remote_at.update()
-# remote_at.send(ser,50)
+remote_at = xlr.RemoteAT(data_rate, "radio4")
+remote_at.update()
+remote_at.send(ser,50)
 
-# at_command = xlr.ATCommand(data_rate)
-# at_command.update()
-# at_command.send(ser,50)
+at_command = xlr.ATCommand(data_rate)
+at_command.update()
+at_command.send(ser,50)
 
-# distance betwen 1 + 2
-# rg = xlr.Distance("radio2")
-# rg.update()
-# range12 = float(rg.send(ser, 50)[1])
-# print "range12", range12
-
+# distance between 1 + 2
 range12 = LatLonConversion.get_distance(p1,p2)
-print 'range12'
-print range12
 
-	
 # distance betwen 1 + 3
-# rg = xlr.Distance("radio3")
-# rg.update()
-# range13 = float(rg.send(ser, 50)[1])
-# print "range13", range13
 range13 = LatLonConversion.get_distance(p1,p3)
-print 'range13'
-print range13
 	
 # distance betwen 2 + 3
-# remoterg = xlr.RemoteDistance("radio2", "radio3")
-# remoterg.update()
-# range23 = float(remoterg.send(ser, 50)[1])
-# print "range23",range23
 range23 = LatLonConversion.get_distance(p2,p3)
-print 'range23'
-print range23
-
-# pyproj module
-# p1_2 = Proj(init='epsg:4326')
-# p2_2 = Proj(init='epsg:3857')
-# x1, y1 = p1_2(-73.998612, 40.732539)
-# x2, y2 = transform(p1_2,p2_2,x1,y1)
-
 
 # TODO: needs to handle 2D vectors and 3D vectors
 def distance(p0, p1):
     #return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2 + (p0[2] - p1[2])**2)
     return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
+sum_range14 = 0
+sum_range24 = 0
+sum_range34 = 0
 #distances to target
-# for i in range(20):
-	# 1 + 4
-rg = xlr.Distance("radio4")
-rg.update()
-range14 = float(rg.send(ser, 50)[1])
-print "range14", range14,rg.send(ser, 50)[0]
-#2+4
-rg = xlr.RemoteDistance("radio2", "radio4")
-rg.update()
-range24 = float(rg.send(ser, 50)[1])
-print "range24", range24,rg.send(ser, 50)[0]
-#3+4
+for i in range(20):
+    # 1 + 4
+    rg = xlr.Distance("radio4")
+    rg.update()
+    #range14 = float(rg.send(ser, 50)[1])
+    sum_range14 += float(rg.send(ser, 50)[1])
+    #2+4
+    rg = xlr.RemoteDistance("radio2", "radio4")
+    rg.update()
+    #range24 = float(rg.send(ser, 50)[1])
+    sum_range24 += float(rg.send(ser, 50)[1])
+    #3+4
+    rg = xlr.RemoteDistance("radio3", "radio4")
+    rg.update()
+    #range34 = float(rg.send(ser, 50)[1])
+    sum_range34 += float(rg.send(ser, 50)[1])
 
-rg = xlr.RemoteDistance("radio3", "radio4")
-rg.update()
-range34 = float(rg.send(ser, 50)[1])
-print "range34", range34,rg.send(ser, 50)[0]
-
-
+range14 = sum_range14 / 20
+range24 = sum_range24 / 20
+range34 = sum_range34 / 20
 
 # radio 3
 i = (math.pow(range13,2)+math.pow(range12,2)-math.pow(range23,2))/(2*range12)
@@ -165,9 +134,6 @@ y = (math.pow(range14,2)-math.pow(range34,2)+math.pow(range13,2)-(2*i*x))/(2*j)
 radio1 = 0,0
 radio2 = range12,0
 radio3 = i,j
-print "radio1 : ", radio1
-print "radio2 : ", radio2
-print "radio3 : ", radio3
 # radio4 = x,y,z
 radio4 = x,y
 
@@ -176,8 +142,6 @@ radio4 = x,y
 # ex is a unit vector in the direction from p1 towards p2
 # ex = num_ex/den_ex
 
-# print map(operator.sub,p2,p1)
-# print "map type" , type(map(operator.sub,p2,p1))
 p1 = (float(p1[0]),float(p1[1]))
 p2 = (float(p2[0]),float(p2[1]))
 p3 = (float(p3[0]),float(p3[1]))
@@ -209,16 +173,17 @@ k = tuple([num*y for num in ey])
 # zez and -zez
 # l = tuple([num*z for num in ez])
 # l2 = tuple([num*-z for num in ez])
-# xex + yez
+# xex + yey
 m = tuple(map(operator.add,j,k)) 
 # xex + yey + zez and xex + yey - zez
 # n = tuple(map(operator.add,m,l)) 
 # n2 = tuple(map(operator.add,m,l2)) 
 # p1 + xex + yey + zez and p1 + xex + yey - zez
+# p1 + xex + yey
 p4 = tuple(map(operator.add,m,p1)) 
 # p4 = tuple(map(operator.add,n,p1)) 
 # p4_2 = tuple(map(operator.add,n2,p1)) 
-print "P4: ", p4 
+#print "P4: ", p4 
 # print p4_2
 
 print LatLonConversion.pyproj_convert_lat_lon(p4)
