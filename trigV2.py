@@ -56,7 +56,7 @@ remote_at.update()
 
 remote_at = xlr.RemoteAT(reset, "radio4")
 remote_at.update()
-print remote_at.send(ser,50)
+#print remote_at.send(ser,50)
 
 # abs coordinates for radio1, radio2, and radio3
 p1 = tuple(args.radio1)
@@ -91,35 +91,55 @@ range13 = LatLonConversion.get_distance(p1,p3)
 # distance betwen 2 + 3
 range23 = LatLonConversion.get_distance(p2,p3)
 
-# TODO: needs to handle 2D vectors and 3D vectors
 def distance(p0, p1):
-    #return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2 + (p0[2] - p1[2])**2)
-    return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
+    if three_d:
+        return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2 + (p0[2] - p1[2])**2)
+    else:
+        return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
 sum_range14 = 0
 sum_range24 = 0
 sum_range34 = 0
+total_range14 = 0
+total_range24 = 0
+total_range34 = 0
 #distances to target
 for i in range(20):
     # 1 + 4
     rg = xlr.Distance("radio4")
     rg.update()
     #range14 = float(rg.send(ser, 50)[1])
-    sum_range14 += float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range14 += curr_range
+        total_range14 += 1
+    except ValueError:
+        continue
     #2+4
     rg = xlr.RemoteDistance("radio2", "radio4")
     rg.update()
     #range24 = float(rg.send(ser, 50)[1])
-    sum_range24 += float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range24 += curr_range
+        total_range24 += 1
+    except ValueError:
+        continue
     #3+4
-    rg = xlr.RemoteDistance("radio3", "radio4")
+    rg = xlr.RemoteDistance("radio4", "radio3")
     rg.update()
     #range34 = float(rg.send(ser, 50)[1])
-    sum_range34 += float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range34 += curr_range
+        total_range34 += 1
+    except ValueError:
+        continue
 
-range14 = sum_range14 / 20
-range24 = sum_range24 / 20
-range34 = sum_range34 / 20
+range14 = (sum_range14 / total_range14) / 100
+range24 = (sum_range24 / total_range24) / 100
+range34 = (sum_range34 / total_range34) / 100
+
 
 # radio 3
 i = (math.pow(range13,2)+math.pow(range12,2)-math.pow(range23,2))/(2*range12)
@@ -142,9 +162,9 @@ radio4 = x,y
 # ex is a unit vector in the direction from p1 towards p2
 # ex = num_ex/den_ex
 
-p1 = (float(p1[0]),float(p1[1]))
-p2 = (float(p2[0]),float(p2[1]))
-p3 = (float(p3[0]),float(p3[1]))
+p1 = LatLonConversion.utm_convert_points(float(p1[0]),float(p1[1]))
+p2 = LatLonConversion.utm_convert_points(float(p2[0]),float(p2[1]))
+p3 = LatLonConversion.utm_convert_points(float(p3[0]),float(p3[1]))
 num_ex =  tuple(map(operator.sub,p2,p1)) 
 den_ex =  distance(p2,p1)
 ex = tuple([round((i/den_ex),4) for i in num_ex])
@@ -186,9 +206,9 @@ p4 = tuple(map(operator.add,m,p1))
 #print "P4: ", p4 
 # print p4_2
 
-p4_coords = LatLonConversion.utm_convert_lat_lon(p4)
+p4_coords = LatLonConversion.utm_convert_lat_lon(p4[0],p4[1])
 
-p4_dict = {"point": p4_coords[0], p4_coords[1]}
+p4_dict = {"point": [p4_coords[0], p4_coords[1]]}
 print json.dumps(p4_dict)
 
 

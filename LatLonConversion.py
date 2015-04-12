@@ -11,8 +11,8 @@ def convert_points(lat,lon):
 	x = earthRadius * math.cos(lat) * math.cos(lon)
 	y = earthRadius * math.cos(lat) * math.sin(lon)
 
-	print 'x ' , x
-	print 'y ' , y
+	# print 'x ' , x
+	# print 'y ' , y
 
 	return (x,y)
 
@@ -51,7 +51,7 @@ def get_distance(p1,p2):
 	# print a-b
 
 	dist = LA.norm(a-b)
-	print 'back to lat lon' , utm_convert_lat_lon(a[0], a[1])
+	#print 'back to lat lon' , utm_convert_lat_lon(a[0], a[1])
 
 	return dist
 
