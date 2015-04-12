@@ -95,51 +95,89 @@ def distance(p0, p1):
     else:
         return math.sqrt((p0[0] - p1[0])**2 + (p0[1] - p1[1])**2)
 
+sum_range14 = []
+sum_range24 = []
+sum_range34 = []
+total_range14 = 0
+total_range24 = 0
+total_range34 = 0
+
+p1 = LatLonConversion.utm_convert_points(float(p1[0]),float(p1[1]))
+p2 = LatLonConversion.utm_convert_points(float(p2[0]),float(p2[1]))
+p3 = LatLonConversion.utm_convert_points(float(p3[0]),float(p3[1]))
+#distances to target
+for i in range(20):
+    # 1 + 4
+    rg = xlr.Distance("radio4")
+    rg.update()
+    #range14 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range14.append(curr_range)
+        total_range14 += 1
+    except ValueError:
+        continue
+    #2+4
+    rg = xlr.RemoteDistance("radio2", "radio4")
+    rg.update()
+    #range24 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range24.append(curr_range)
+        total_range24 += 1
+    except ValueError:
+        continue
+    #3+4
+    rg = xlr.RemoteDistance("radio4", "radio3")
+    rg.update()
+    #range34 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range34.append(curr_range)
+        total_range34 += 1
+    except ValueError:
+        continue
+
+range14 = (sum(sum_range14) / total_range14) / 100
+range24 = (sum(sum_range24) / total_range24) / 100
+range34 = (sum(sum_range34) / total_range34) / 100
+
 
 while 1 < 100:
-    sum_range14 = 0
-    sum_range24 = 0
-    sum_range34 = 0
-    total_range14 = 0
-    total_range24 = 0
-    total_range34 = 0
-    #distances to target
-    for i in range(20):
-        # 1 + 4
-        rg = xlr.Distance("radio4")
-        rg.update()
-        #range14 = float(rg.send(ser, 50)[1])
-        try:
-            curr_range = float(rg.send(ser, 50)[1])
-            sum_range14 += curr_range
-            total_range14 += 1
-        except ValueError:
-            continue
-        #2+4
-        rg = xlr.RemoteDistance("radio2", "radio4")
-        rg.update()
-        #range24 = float(rg.send(ser, 50)[1])
-        try:
-            curr_range = float(rg.send(ser, 50)[1])
-            sum_range24 += curr_range
-            total_range24 += 1
-        except ValueError:
-            continue
-        #3+4
-        rg = xlr.RemoteDistance("radio4", "radio3")
-        rg.update()
-        #range34 = float(rg.send(ser, 50)[1])
-        try:
-            curr_range = float(rg.send(ser, 50)[1])
-            sum_range34 += curr_range
-            total_range34 += 1
-        except ValueError:
-            continue
+    sum_range14.pop(0)
+    sum_range24.pop(0)
+    sum_range34.pop(0)
+    # 1 + 4
+    rg = xlr.Distance("radio4")
+    rg.update()
+    #range14 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range14.append(curr_range)
+    except ValueError:
+        continue
+    #2+4
+    rg = xlr.RemoteDistance("radio2", "radio4")
+    rg.update()
+    #range24 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range24.append(curr_range)
+    except ValueError:
+        continue
+    #3+4
+    rg = xlr.RemoteDistance("radio4", "radio3")
+    rg.update()
+    #range34 = float(rg.send(ser, 50)[1])
+    try:
+        curr_range = float(rg.send(ser, 50)[1])
+        sum_range34.append(curr_range)
+    except ValueError:
+        continue
 
-    range14 = (sum_range14 / total_range14) / 100
-    range24 = (sum_range24 / total_range24) / 100
-    range34 = (sum_range34 / total_range34) / 100
-
+    range14 = (sum(sum_range14) / total_range14) / 100
+    range24 = (sum(sum_range24) / total_range24) / 100
+    range34 = (sum(sum_range34) / total_range34) / 100
 
     # radio 3
     i = (math.pow(range13,2)+math.pow(range12,2)-math.pow(range23,2))/(2*range12)
@@ -162,9 +200,6 @@ while 1 < 100:
     # ex is a unit vector in the direction from p1 towards p2
     # ex = num_ex/den_ex
 
-    p1 = LatLonConversion.utm_convert_points(float(p1[0]),float(p1[1]))
-    p2 = LatLonConversion.utm_convert_points(float(p2[0]),float(p2[1]))
-    p3 = LatLonConversion.utm_convert_points(float(p3[0]),float(p3[1]))
     num_ex =  tuple(map(operator.sub,p2,p1)) 
     den_ex =  distance(p2,p1)
     ex = tuple([round((i/den_ex),4) for i in num_ex])
@@ -205,6 +240,7 @@ while 1 < 100:
     # p4_2 = tuple(map(operator.add,n2,p1)) 
     #print "P4: ", p4 
     # print p4_2
+    print p4
 
     p4_coords = LatLonConversion.utm_convert_lat_lon(p4[0],p4[1])
 
