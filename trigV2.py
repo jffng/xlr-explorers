@@ -1,10 +1,10 @@
-import xlr#, serial
+import xlr, serial
+import json
 import math
 import operator
 import argparse
 import LatLonConversion
 import numpy
-from pyproj import Proj, transform
 
 three_d = False
 
@@ -186,7 +186,9 @@ p4 = tuple(map(operator.add,m,p1))
 #print "P4: ", p4 
 # print p4_2
 
-print LatLonConversion.pyproj_convert_lat_lon(p4)
+p4_coords = LatLonConversion.utm_convert_lat_lon(p4)
 
+p4_dict = {"point": p4_coords[0], p4_coords[1]}
+print json.dumps(p4_dict)
 
 
