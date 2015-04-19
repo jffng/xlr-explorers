@@ -1,0 +1,601 @@
+Distance:  463
+Distance:  915
+Distance:  1455
+Distance:  1090
+Distance:  1456
+Distance:  1947
+Distance:  1458
+Distance:  1836
+Distance:  2036
+Distance:  1784
+Distance:  1987
+Distance:  2081
+Distance:  2431
+Distance:  2546
+Distance:  2670
+Distance:  4044
+Distance:  3482
+Distance:  3565
+Distance:  3888
+Distance:  3821
+Distance:  3794
+Avg Distance:  2414
+Distance:  3666
+Avg Distance:  2551
+Distance:  4077
+Avg Distance:  2682
+Distance:  4408
+Avg Distance:  2848
+Distance:  4685
+Avg Distance:  3010
+Distance:  4630
+Avg Distance:  3144
+Distance:  4707
+Avg Distance:  3306
+Distance:  5392129
+Avg Distance:  272821
+Distance:  5392129
+Avg Distance:  542326
+Distance:  5890
+Avg Distance:  542531
+Distance:  5311
+Avg Distance:  542697
+Distance:  5893
+Avg Distance:  542888
+Distance:  5392129
+Avg Distance:  812373
+Distance:  5392129
+Avg Distance:  1081852
+Distance:  5392129
+Avg Distance:  1351325
+Distance:  6066
+Avg Distance:  1351426
+Distance:  6102
+Avg Distance:  1351557
+Distance:  6341
+Avg Distance:  1351696
+Distance:  6376
+Avg Distance:  1351820
+Distance:  6343
+Avg Distance:  1351946
+Distance:  5392129
+Avg Distance:  1621363
+Distance:  7291
+Avg Distance:  1621544
+Distance:  7305
+Avg Distance:  1621706
+Distance:  5392129
+Avg Distance:  1891092
+Distance:  7480
+Avg Distance:  1891231
+Distance:  7476
+Avg Distance:  1891374
+Distance:  7667
+Avg Distance:  1891522
+Distance:  5392129
+Avg Distance:  1891522
+Distance:  5392129
+Avg Distance:  1891522
+Distance:  5392129
+Avg Distance:  2160834
+Distance:  5392129
+Avg Distance:  2430175
+Distance:  5392129
+Avg Distance:  2699486
+Distance:  8507
+Avg Distance:  2430305
+Distance:  5392129
+Avg Distance:  2430305
+Distance:  5392129
+Avg Distance:  2430305
+Distance:  8902
+Avg Distance:  2430447
+Distance:  5392129
+Avg Distance:  2699748
+Distance:  5392129
+Avg Distance:  2969038
+Distance:  5392129
+Avg Distance:  3238325
+Distance:  5392129
+Avg Distance:  3507615
+Distance:  5392129
+Avg Distance:  3507615
+Distance:  10547
+Avg Distance:  3507778
+Distance:  5392129
+Avg Distance:  3777019
+Distance:  5392129
+Avg Distance:  3777019
+Distance:  5392129
+Avg Distance:  4046251
+Distance:  5392129
+Avg Distance:  4315484
+Distance:  5392129
+Avg Distance:  4584707
+Distance:  11081
+Avg Distance:  4315655
+Distance:  11098
+Avg Distance:  4046603
+Distance:  11288
+Avg Distance:  3777561
+Distance:  11356
+Avg Distance:  3508522
+Distance:  5392129
+Avg Distance:  3508522
+Distance:  11943
+Avg Distance:  3508694
+Distance:  11890
+Avg Distance:  3239682
+Distance:  12123
+Avg Distance:  2970682
+Distance:  12161
+Avg Distance:  2970845
+Distance:  12567
+Avg Distance:  2701867
+Distance:  5392129
+Avg Distance:  2701867
+Distance:  12837
+Avg Distance:  2432902
+Distance:  12739
+Avg Distance:  2163933
+Distance:  12925
+Avg Distance:  1894972
+Distance:  13268
+Avg Distance:  1895108
+Distance:  13127
+Avg Distance:  1626158
+Distance:  14266
+Avg Distance:  1357265
+Distance:  13741
+Avg Distance:  1088346
+Distance:  5392129
+Avg Distance:  1088346
+Distance:  5392129
+Avg Distance:  1088346
+Distance:  14177
+Avg Distance:  1088501
+Distance:  13987
+Avg Distance:  1088645
+Distance:  14515
+Avg Distance:  1088806
+Distance:  14384
+Avg Distance:  1088958
+Distance:  14621
+Avg Distance:  820082
+Distance:  14470
+Avg Distance:  820209
+Distance:  14740
+Avg Distance:  820351
+Distance:  14721
+Avg Distance:  820481
+Distance:  14963
+Avg Distance:  820621
+Distance:  15014
+Avg Distance:  820744
+Distance:  15115
+Avg Distance:  551893
+Distance:  15683
+Avg Distance:  552035
+Distance:  15539
+Avg Distance:  552175
+Distance:  16314
+Avg Distance:  552345
+Distance:  15823
+Avg Distance:  552472
+Distance:  16499
+Avg Distance:  552641
+Distance:  15904
+Avg Distance:  552723
+Distance:  5392129
+Avg Distance:  821642
+Distance:  5392129
+Avg Distance:  821642
+Distance:  17089
+Avg Distance:  552890
+Distance:  17942
+Avg Distance:  553079
+Distance:  16237
+Avg Distance:  553191
+Distance:  19146
+Avg Distance:  553423
+Distance:  18588
+Avg Distance:  553633
+Distance:  16523
+Avg Distance:  553728
+Distance:  5392129
+Avg Distance:  822611
+Distance:  5392129
+Avg Distance:  1091480
+Distance:  5392129
+Avg Distance:  1360351
+Distance:  n
+Distance:  5392129
+Distance:  n
+Distance:  n
+Distance:  n
+Distance:  n
+Distance:  5392129
+Distance:  n
+Distance:  n
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  14280
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  5392129
+Avg Distance:  5392129
+Distance:  n
+Distance:  5392129
+Distance:  5392129
+Distance:  12713
+Distance:  5392129
+Distance:  12059
+Distance:  13226
+Distance:  11097
+Distance:  5392129
+Distance:  11501
+Distance:  11121
+Distance:  5392129
+Distance:  5392129
+Distance:  10528
+Distance:  5392129
+Distance:  10994
+Distance:  10933
+Distance:  11090
+Distance:  10211
+Distance:  5392129
+Distance:  10136
+Distance:  10219
+Avg Distance:  11092
+Distance:  9969
+Avg Distance:  10918
+Distance:  9730
+Avg Distance:  10627
+Distance:  5392129
+Avg Distance:  459046
+Distance:  10197
+Avg Distance:  458938
+Distance:  10441
+Avg Distance:  458881
+Distance:  5392129
+Avg Distance:  907348
+Distance:  9639
+Avg Distance:  907235
+Distance:  10057
+Avg Distance:  907162
+Distance:  9073
+Avg Distance:  906994
+Distance:  8697
+Avg Distance:  906868
+Distance:  8545
+Avg Distance:  906735
+Distance:  8984
+Avg Distance:  906632
+Distance:  10336
+Avg Distance:  906663
+Distance:  9064
+Avg Distance:  906607
+Distance:  5392129
+Avg Distance:  906607
+Distance:  5392129
+Avg Distance:  1355101
+Distance:  5392129
+Avg Distance:  1803575
+Distance:  8984
+Avg Distance:  1354980
+Distance:  8601
+Avg Distance:  1354894
+Distance:  5392129
+Avg Distance:  1803400
+Distance:  8490
+Avg Distance:  1803351
+Distance:  8660
+Avg Distance:  1803348
+Distance:  5392129
+Avg Distance:  2251980
+Distance:  8613
+Avg Distance:  2251949
+Distance:  8765
+Avg Distance:  2251818
+Distance:  8207
+Avg Distance:  2251747
+Distance:  8360
+Avg Distance:  1803099
+Distance:  8455
+Avg Distance:  1354460
+Distance:  8312
+Avg Distance:  905808
+Distance:  8520
+Avg Distance:  905770
+Distance:  8395
+Avg Distance:  905752
+Distance:  8241
+Avg Distance:  457095
+Distance:  8369
+Avg Distance:  457085
+Distance:  8790
+Avg Distance:  457096
+Distance:  8238
+Avg Distance:  8438
+Distance:  8449
+Avg Distance:  8425
+Distance:  8449
+Avg Distance:  8398
+Distance:  8568
+Avg Distance:  8428
+Distance:  8474
+Avg Distance:  8438
+Distance:  8649
+Avg Distance:  8454
+Distance:  5392129
+Avg Distance:  457105
+Distance:  8121
+Avg Distance:  457072
+Distance:  5392129
+Avg Distance:  905717
+Distance:  5392129
+Avg Distance:  1354374
+Distance:  8477
+Avg Distance:  1354383
+Distance:  8058
+Avg Distance:  1354322
+Distance:  8615
+Avg Distance:  1354353
+Distance:  8552
+Avg Distance:  1354362
+Distance:  8347
+Avg Distance:  1354354
+Distance:  8661
+Avg Distance:  1354361
+Distance:  9244
+Avg Distance:  1354425
+Distance:  8661
+Avg Distance:  1354426
+Distance:  5392129
+Avg Distance:  1354426
+Distance:  8484
+Avg Distance:  1354457
+Distance:  8772
+Avg Distance:  905844
+Distance:  8602
+Avg Distance:  457216
+Distance:  8884
+Avg Distance:  457250
+Distance:  8202
+Avg Distance:  457262
+Distance:  8740
+Avg Distance:  457273
+Distance:  8204
+Avg Distance:  457244
+Distance:  8243
+Avg Distance:  457235
+Distance:  8181
+Avg Distance:  457195
+Distance:  8296
+Avg Distance:  457116
+Distance:  7793
+Avg Distance:  457044
+Distance:  8618
+Avg Distance:  8418
+Distance:  7725
+Avg Distance:  8355
+Distance:  8313
+Avg Distance:  8316
+Distance:  7379
+Avg Distance:  8214
+Distance:  7145
+Avg Distance:  8069
+Distance:  7699
+Avg Distance:  8028
+Distance:  7233
+Avg Distance:  7902
+Distance:  7854
+Avg Distance:  7873
+Distance:  6913
+Avg Distance:  7762
+Distance:  7141
+Avg Distance:  7675
+Distance:  6640
+Avg Distance:  7537
+Distance:  6431
+Avg Distance:  7424
+Distance:  6542
+Avg Distance:  7251
+Distance:  6305
+Avg Distance:  7132
+Distance:  6334
+Avg Distance:  6968
+Distance:  6301
+Avg Distance:  6878
+Distance:  6197
+Avg Distance:  6799
+Distance:  6706
+Avg Distance:  6716
+Distance:  6600
+Avg Distance:  6663
+Distance:  6675
+Avg Distance:  6565
+Distance:  6196
+Avg Distance:  6505
+Distance:  5962
+Avg Distance:  6407
+Distance:  5940
+Avg Distance:  6349
+Distance:  5564
+Avg Distance:  6276
+Distance:  5549
+Avg Distance:  6194
+Distance:  5717
+Avg Distance:  6145
+Distance:  5548
+Avg Distance:  6079
+Distance:  5059
+Avg Distance:  5976
+Distance:  5462
+Avg Distance:  5914
+Distance:  5284
+Avg Distance:  5796
+Distance:  4922
+Avg Distance:  5656
+Distance:  4850
+Avg Distance:  5504
+Distance:  5054
+Avg Distance:  5409
+Distance:  4838
+Avg Distance:  5315
+Distance:  4969
+Avg Distance:  5234
+Distance:  5040
+Avg Distance:  5191
+Distance:  5017
+Avg Distance:  5146
+Distance:  5343
+Avg Distance:  5115
+Distance:  5751
+Avg Distance:  5132
+Distance:  5260
+Avg Distance:  5149
+Distance:  5295
+Avg Distance:  5135
+Distance:  5594
+Avg Distance:  5161
+Distance:  5762
+Avg Distance:  5231
+Distance:  5320
+Avg Distance:  5270
+Distance:  5458
+Avg Distance:  5303
+Distance:  6144
+Avg Distance:  5412
+Distance:  5600
+Avg Distance:  5465
+Distance:  5401
+Avg Distance:  5495
+Distance:  5388
+Avg Distance:  5526
+Distance:  5442
+Avg Distance:  5534
+Distance:  5385
+Avg Distance:  5504
+Distance:  5454
+Avg Distance:  5520
+Distance:  6434
+Avg Distance:  5615
+Distance:  5514
+Avg Distance:  5608
+Distance:  5305
+Avg Distance:  5570
+Distance:  5308
+Avg Distance:  5569
+Distance:  5143
+Avg Distance:  5543
+Distance:  4965
+Avg Distance:  5444
+Distance:  4966
+Avg Distance:  5392
+Distance:  4808
+Avg Distance:  5342
+Distance:  4592
+Avg Distance:  5276
+Distance:  4528
+Avg Distance:  5200
+Distance:  4458
+Avg Distance:  5122
+Distance:  4778
+Avg Distance:  5066
+Distance:  4383
+Avg Distance:  4895
+Distance:  4250
+Avg Distance:  4790
+Distance:  4346
+Avg Distance:  4710
+Distance:  3995
+Avg Distance:  4601
+Distance:  3630
+Avg Distance:  4474
+Distance:  3486
+Avg Distance:  4351
+Distance:  3571
+Avg Distance:  4235
+Distance:  3293
+Avg Distance:  4109
+Distance:  3375
+Avg Distance:  4007
+Distance:  3380
+Avg Distance:  3912
+Distance:  2876
+Avg Distance:  3780
+Distance:  3108
+Avg Distance:  3641
+Distance:  2698
+Avg Distance:  3500
+Distance:  2559
+Avg Distance:  3359
+Distance:  2727
+Avg Distance:  3224
+Distance:  2922
+Avg Distance:  3135
+Distance:  2129
+Avg Distance:  3010
+Distance:  1890
+Avg Distance:  2877
+Distance:  1950
+Avg Distance:  2742
+Distance:  1627
+Avg Distance:  2603
+Distance:  1574
+Avg Distance:  2453
+Distance:  1544
+Avg Distance:  2300
+Distance:  1260
+Avg Distance:  2165
+Distance:  1187
+Avg Distance:  2005
+Distance:  1000
+Avg Distance:  1864
+Distance:  1041
+Avg Distance:  1737
+Distance:  652
+Avg Distance:  1564
+Distance:  532
+Avg Distance:  1365
+Distance:  429
+Avg Distance:  1223
+Distance:  214
+Avg Distance:  1084
+Distance:  215
+Avg Distance:  939
+Distance:  124
+Avg Distance:  814
+Distance:  54
+Avg Distance:  687
+Distance:  n
