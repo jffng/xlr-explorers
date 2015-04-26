@@ -3,9 +3,8 @@ import xlr, serial, sys, datetime, time, csv
 
 loc = sys.argv[1]
 target = sys.argv[2]
-antenna = sys.argv[3]
 
-ser = serial.Serial('/dev/cu.usbserial', 9600, timeout=.5)
+ser = serial.Serial('/dev/cu.usbserial', 9600, timeout=.225)
 
 data_rates = {
 	'0': '9.38kbps',
@@ -18,6 +17,11 @@ data_rates = {
 	'7': '2.392Mbps',
 	'8': '3.189Mpbs'
 }
+
+# SET THE TARGET RADIO TO API MODE WITHOUT ESCAPES
+remote_at = xlr.RemoteAT('ap1', target)
+remote_at.update()
+remote_at.send(ser,50)
 
 for i in range(9):
 	data_rate = 'br' + str(i)
@@ -41,9 +45,9 @@ for i in range(9):
 
 		st = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
-		with open('test.csv', 'a') as fp:
+		with open('test_subway_41715.csv', 'a') as fp:
 			a = csv.writer(fp, delimiter=',')
-			row = [st, loc, i, antenna , response[1]]
+			row = [st, loc, i, response[1]]
 			a.writerow(row)
 
-		print st + ' , ' + loc + ' , ' + data_rates[str(i)] + ' , ' + antenna + ' , ' +  str(response[1])
+		print st + ' , ' + loc + ' , ' + data_rates[str(i)] + ' , ' + str(response[1])

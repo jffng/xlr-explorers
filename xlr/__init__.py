@@ -4,3 +4,6 @@ from xlr.api import ATCommand
 from xlr.api import Transmit
 from xlr.api import Distance
 from xlr.api import RemoteDistance
+from xlr.LatLonConversion import utm_convert_points
+from xlr.LatLonConversion import utm_convert_lat_lon
+from xlr.LatLonConversion import get_distance
